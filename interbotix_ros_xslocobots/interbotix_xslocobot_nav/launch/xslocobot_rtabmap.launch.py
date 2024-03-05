@@ -93,7 +93,7 @@ def launch_setup(context, *args, **kwargs):
         'subscribe_user_data': False,
         'subscribe_odom_info': False,
         'qos_scan': 1,
-        'frame_id': (robot_name_launch_arg, '/base_footprint'),
+        'frame_id': (robot_name_launch_arg, '/base_link'),
         'map_frame_id': 'map',
         'odom_frame_id': (robot_name_launch_arg, '/odom'),
         'publish_tf': True,
@@ -209,7 +209,7 @@ def launch_setup(context, *args, **kwargs):
         name='obstacles_detection',
         parameters=[{
             'wait_for_transform': 0.2,
-            'frame_id': 'base_footprint',
+            'frame_id': 'base_link',
             'use_sim_time': use_sim_time_param,
         }],
         remappings=[
@@ -263,7 +263,7 @@ def launch_setup(context, *args, **kwargs):
         parameters=[{
             'subscribe_rgbd': True,
             'subscribe_scan': use_lidar_launch_arg,
-            'frame_id': 'base_footprint',
+            'frame_id': 'base_link',
             'odom_frame_id': 'odom',
             'wait_for_transform': True,
             'use_sim_time': use_sim_time_param,
