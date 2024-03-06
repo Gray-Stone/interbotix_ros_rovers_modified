@@ -721,7 +721,7 @@ global_costmap:
 
         # Map topic to subscribe to. If left empty the map topic will default to the global
         # map_topic parameter in costmap_2d_ros. (default: "")
-        map_topic: ""
+        map_topic: "/map"
 
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
