@@ -82,7 +82,7 @@ def launch_setup(context, *args, **kwargs):
     )
 
     rtabmap_parameters = {
-        'visual_odometry': False,  # TODO
+        'visual_odometry': True,  # TODO
         'subscribe_depth': False,
         'subscribe_rgb': False,
         'subscribe_rgbd': True,
@@ -161,6 +161,9 @@ def launch_setup(context, *args, **kwargs):
             'rviz_frame': 'map',
             'use_camera': 'true',
             'rs_camera_align_depth': 'true',
+            # Seems like rtabmap is generating point cloud. Turn of intel's
+
+            'rs_camera_pointcloud_enable': 'false',
             'use_base': 'true',
             # 'use_dock': 'true',
             'xs_driver_logging_level': xs_driver_logging_level_launch_arg,

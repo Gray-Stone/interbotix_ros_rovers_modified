@@ -123,7 +123,7 @@ controller_server:
     # The controller server filters the velocity portion of the odometry messages received before
     # sending them to the controller plugin. Odometry values below this threshold (in m/s) will be
     # set to 0.0. For non-holonomic robots (default: 0.0001)
-    min_y_velocity_threshold: 0.5
+    min_y_velocity_threshold: 0.3
 
     # The controller server filters the velocity portion of the odometry messages received before
     # sending them to the controller plugin. Odometry values below this threshold (in rad/s) will
@@ -250,13 +250,13 @@ controller_server:
       min_speed_theta: 0.0
 
       # Maximum acceleration X (m/s^2). (default: 0.0)
-      acc_lim_x: 2.5
+      acc_lim_x: 1.5
 
       # Maximum acceleration Y (m/s^2). (default: 0.0)
       acc_lim_y: 0.0
 
       # Maximum acceleration rotation (rad/s^2). (default: 0.0)
-      acc_lim_theta: 3.2
+      acc_lim_theta: 2.6
 
       # Maximum deceleration X (m/s^2). (default: 0.0)
       decel_lim_x: -2.5
@@ -503,7 +503,8 @@ local_costmap:
 
         scan:
           # Topic of data.
-          topic: /locobot/scan
+          # topic: /locobot/rtabmap/local_grid_obstacle
+          topic: /locobot/rtabmap/depth/color/voxels
 
           # Frame of sensor, to use if not provided by message. If empty, uses message frame_id.
           sensor_frame: ""
@@ -516,13 +517,13 @@ local_costmap:
           expected_update_rate: 0.0
 
           # Data type of input, LaserScan or PointCloud2. (default: LaserScan)
-          data_type: "LaserScan"
+          data_type: "PointCloud2"
 
           # Minimum height to add return to occupancy grid. (default: 0.0)
-          min_obstacle_height: 0.0
+          min_obstacle_height: 0.12
 
           # Maximum height to add return to occupancy grid. (default: 0.0)
-          max_obstacle_height: 2.0
+          max_obstacle_height: 1.2
 
           # Are infinite returns from laser scanners valid measurements to raycast. (default:
           # False)
@@ -535,13 +536,13 @@ local_costmap:
           clearing: True
 
           # Maximum range to mark obstacles in costmap. (default: 2.5)
-          obstacle_max_range: 2.5
+          obstacle_max_range: 3.5
 
           # Minimum range to mark obstacles in costmap. (default: 0.0)
           obstacle_min_range: 0.0
 
           # Maximum range to raytrace clear obstacles from costmap. (default: 3.0)
-          raytrace_max_range: 3.0
+          raytrace_max_range: 4.0
 
           # Minimum range to raytrace clear obstacles from costmap. (default: 0.0)
           raytrace_min_range: 0.0
@@ -711,7 +712,7 @@ global_costmap:
         enabled: True
 
         # Subscribe to static map updates after receiving first. (default: False)
-        subscribe_to_updates: False
+        subscribe_to_updates: True
 
         # QoS settings for map topic. (default: True)
         map_subscribe_transient_local: True
